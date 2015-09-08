@@ -12,6 +12,9 @@ get '/:username' do
 	@user = TweetUser.find_or_create_by(username: params[:username])
 
 	if @user.tweets.empty?
+		@user.fetch_tweets
+	elsif @user.tweets_stale?
+		byebug
 		@user.fetch_tweets!
 	end
 
