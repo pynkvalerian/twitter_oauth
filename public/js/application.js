@@ -1,7 +1,28 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  
+	$("#ajax").submit(function(event){
+		
+		event.preventDefault();
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+		$('img').show();
+
+		$.ajax({
+			url: '/ajax_tweets',
+			method: 'POST',
+			dataType: "json",
+			data: $(this).serialize()
+		}).done(function(response){
+			
+			$.each(response, function(index, value){
+				$('img').hide();
+				$('.tweets').append(
+					'<p>\
+					<dt>'+value["text"]+'</dt>\
+   					<dd> posted on '+value["text_created_at"]+'</dd>\
+   					</p>'
+					)
+			})
+		})
+	})
+
 });

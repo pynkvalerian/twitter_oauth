@@ -2,10 +2,16 @@
   <h1>Welcome to TweetSnatcher!</h1>
   <p>Hello, stalker-to-be!</p>
 
-  <form method="post" action="/tweets">
+  <form id="ajax">
     <label for="username"> Insert Twitter username here: </label>
     <input type="text" name="username" placeholder="Twitter Username">
-    <input type="submit" name="Catch 'em all!">
+    <input type="submit">
   </form>
+
+  <img src="ajax-loader.gif">
+
+  <div class="tweets">
+  </div>
+
 
 </div>
