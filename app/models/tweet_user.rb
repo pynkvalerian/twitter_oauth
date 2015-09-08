@@ -18,9 +18,15 @@ class TweetUser < ActiveRecord::Base
   def tweets_stale?
   	now = DateTime.now
   	time_zone_diff = 8 * 60 * 60
-  	fifteen_mins = 15 *60
+  	fifteen_mins = 15 * 60
   	time_difference = now.to_i - (self.tweets.first.created_at).to_i + time_zone_diff
   	return true if time_difference > fifteen_mins
+  end
+
+  def ancient_tweeter?
+  	six_months = 6 * 30 * 24 * 60 * 60
+  	last_tweet_time = self.tweets.first.text_created_at.to_i 
+  	return true if last_tweet_time > six_months
   end
 
 end

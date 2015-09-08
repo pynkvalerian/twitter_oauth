@@ -8,7 +8,7 @@
    <% @tweets.each do |tweet| %>
    <p>
    	<dt><%= tweet.text %></dt>
-   	<dd> posted on <%= tweet.created_at %></dd>
+   	<dd> posted on <%= tweet.text_created_at %></dd>
    </p>
    <% end %>
 
