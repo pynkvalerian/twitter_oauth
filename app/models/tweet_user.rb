@@ -23,10 +23,10 @@ class TweetUser < ActiveRecord::Base
   	return true if time_difference > fifteen_mins
   end
 
-  def ancient_tweeter?
+  def not_ancient_tweeter?
   	six_months = 6 * 30 * 24 * 60 * 60
-  	last_tweet_time = self.tweets.first.text_created_at.to_i 
-  	return true if last_tweet_time > six_months
+  	last_tweet_time = DateTime.parse(self.tweets.first.text_created_at).to_i 
+  	return true if last_tweet_time < six_months
   end
 
 end

@@ -13,8 +13,9 @@ get '/:username' do
 
 	if @user.tweets.empty?
 		@user.fetch_tweets!
-	elsif @user.tweets_stale? && @user.ancient_tweeter?
+	elsif @user.tweets_stale? && @user.not_ancient_tweeter?
 		@user.fetch_tweets!
+		erb :loading
 	end
 
 	@tweets = @user.tweets.limit(10)
